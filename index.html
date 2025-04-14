@@ -169,7 +169,7 @@
                         <li>✅ Регулярные обновления</li>
                     </ul>
                     <div id="download" class="download-block">
-                        <a href="AsetLauncherInstaller.exe" class="btn primary">
+                        <a href="https://drive.google.com/uc?export=download&id=16JEGk5XLSTf6CpvgVpIoxwAq-T7CkiDd" class="btn primary" id="downloadButton">
                             <span class="download-icon">⬇️</span>
                             Скачать AsetLauncher
                         </a>
@@ -429,6 +429,11 @@
             
             // Запускаем функцию при загрузке страницы
             highlightActiveSection();
+        });
+
+        document.getElementById('downloadButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'https://drive.google.com/uc?export=download&id=16JEGk5XLSTf6CpvgVpIoxwAq-T7CkiDd';
         });
     </script>
 </body>
