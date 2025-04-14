@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsetWorld - Minecraft сервер и лаунчер</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Только стили для позиционирования логотипа и кнопок */
+        header .container {
+            position: relative;
+            height: 50px;
+        }
+        
+        header nav {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        header .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header .menu li {
+            margin-left: 20px;
+        }
+        
+        header .menu a {
+            transition: color 0.3s;
+        }
+        
+        header .menu a.active {
+            color: #ffcc00;
+            font-weight: 600;
+        }
+        
+        header .menu .donate-link {
+            color: #ffcc00;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        header .menu .donate-link:hover, 
+        header .menu .donate-link.active {
+            color: #ff9900;
+        }
+        
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            header .container {
+                height: auto;
+                padding: 10px 0;
+            }
+            
+            header nav {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            header .logo {
+                margin-bottom: 15px;
+            }
+            
+            header .menu {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            header .menu li {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="logo.png" alt="AsetWorld Logo">
+                    <span>AsetWorld</span>
+                </div>
+                <ul class="menu">
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#launcher">Лаунчер</a></li>
+                    <li><a href="#server">Сервер</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                    <li><a href="donate.html" class="donate-link">Донат</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="pulsing-text">
+                    <span class="word">Добро</span>
+                    <span class="word">пожаловать</span>
+                    <span class="word">в</span>
+                    <span class="word">мир</span>
+                    <br>
+                    <span class="word highlight">AsetWorld</span>
+                </h1>
+                <p>Уникальный Minecraft сервер и удобный лаунчер для комфортной игры</p>
+                <div class="buttons">
+                    <a href="#download" class="btn primary">Скачать лаунчер</a>
+                    <a href="#server" class="btn secondary">Играть сейчас</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>О проекте <span class="highlight">AsetWorld</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>AsetWorld - это анархический Minecraft сервер для настоящих ценителей хардкорной игры. Здесь вы найдете честное PvP, минимум ограничений и максимум свободы действий. Наш собственный лаунчер AsetLauncher обеспечивает комфортный запуск и обновление игры.</p>
+                    <p>У нас выживает сильнейший - ни приватов, ни защиты, только ты и твои навыки!</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature">
+                        <div class="feature-icon">⚔️</div>
+                        <h3>Честное PvP</h3>
+                        <p>Никаких преимуществ, только навыки и стратегия</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Отличный античит</h3>
+                        <p>Защита от читеров и нечестной игры</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🌍</div>
+                        <h3>Открытый мир</h3>
+                        <p>Полная свобода действий и передвижений</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="launcher" class="launcher">
+        <div class="container">
+            <h2>Лаунчер <span class="highlight">AsetLauncher</span></h2>
+            <div class="launcher-content">
+                <div class="launcher-info">
+                    <p>AsetLauncher - отличный лаунчер Minecraft для комфортной игры с друзьями на нашем сервере и не только!</p>
+                    <ul class="launcher-features">
+                        <li>✅ Система скинов и плащей</li>
+                        <li>✅ Любые версии Minecraft на ваш выбор</li>
+                        <li>✅ Оптимизированная загрузка</li>
+                        <li>✅ Регулярные обновления</li>
+                    </ul>
+                    <div id="download" class="download-block">
+                        <a href="https://drive.google.com/uc?export=download&id=16JEGk5XLSTf6CpvgVpIoxwAq-T7CkiDd" class="btn primary" id="downloadButton">
+                            <span class="download-icon">⬇️</span>
+                            Скачать AsetLauncher
+                        </a>
+                        <span class="version">Версия: 1.1</span>
+                    </div>
+                </div>
+                <div class="launcher-image">
+                    <div class="launcher-preview">
+                        <div class="preview-window">
+                            <div class="window-controls">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="launcher-interface">
+                                <div class="launcher-header">AsetLauncher</div>
+                                <div class="launcher-body">
+                                    <div class="launcher-news"></div>
+                                    <div class="launcher-login"></div>
+                                </div>
+                                <div class="launcher-footer"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="server" class="server">
+        <div class="container">
+            <h2>Наш <span class="highlight">сервер</span></h2>
+            <div class="server-content">
+                <div class="server-info">
+                    <div class="server-address">
+                        <h3>Адрес сервера:</h3>
+                        <div class="server-ip">
+                            <span>play.asetworld.aboba.su</span>
+                            <button class="copy-btn" onclick="copyToClipboard('play.asetworld.aboba.su')">Копировать</button>
+                        </div>
+                    </div>
+                    <div class="server-status">
+                        <h3>Статус:</h3>
+                        <div class="status online">
+                            <span class="status-indicator"></span>
+                            <span class="status-text">Онлайн</span>
+                            <span class="players-count">0/0 игроков</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="server-modes">
+                    <h3>Особенности сервера:</h3>
+                    <div class="modes-grid">
+                        <div class="mode-card">
+                            <h4>Кейсы и донат</h4>
+                            <p>Открывайте кейсы с ценными предметами и поддержите проект, получив дополнительные возможности.</p>
+                        </div>
+                        <div class="mode-card">
+                            <h4>Квесты</h4>
+                            <p>Выполняйте уникальные задания и получайте редкие награды и ресурсы.</p>
+                        </div>
+                        <div class="mode-card">
+                            <h4>Автошахта</h4>
+                            <p>Уникальная система автоматической добычи ресурсов для более эффективного развития.</p>
+                        </div>
+                        <div class="mode-card">
+                            <h4>Анархия и свобода</h4>
+                            <p>Никаких правил и ограничений, кроме античита. Строй, разрушай и выживай как хочешь!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Свяжитесь с <span class="highlight">нами</span></h2>
+            <div class="contact-content">
+                <div class="social-links">
+                    <a href="https://discord.gg/asetworld" class="social-link discord">
+                        <img src="discord-icon.png" alt="Discord">
+                        <span>Discord</span>
+                    </a>
+                    <a href="https://t.me/asetworld" class="social-link telegram">
+                        <img src="telegram-icon.png" alt="Telegram">
+                        <span>Telegram</span>
+                    </a>
+                </div>
+                <div class="contact-form">
+                    <h3>Есть вопросы?</h3>
+                    <p class="contact-description">Напишите нам на почту, и мы ответим вам в ближайшее время:</p>
+                    <div class="email-container">
+                        <a href="mailto:epicgamestoptop@gmail.com" class="email-link">
+                            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" class="email-icon">
+                            epicgamestoptop@gmail.com
+                        </a>
+                    </div>
+                    <div class="contact-buttons">
+                        <a href="mailto:epicgamestoptop@gmail.com?subject=Вопрос по AsetWorld&body=Здравствуйте! У меня есть вопрос по вашему проекту:" class="btn primary">
+                            <span>✉️</span> Написать письмо
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="AsetWorld Logo">
+                    <span>AsetWorld</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#about">О нас</a>
+                    <a href="#launcher">Лаунчер</a>
+                    <a href="#server">Сервер</a>
+                    <a href="#contact">Контакты</a>
+                    <a href="donate.html">Донат</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 AsetWorld. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Функция для копирования IP в буфер обмена
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            // Показываем уведомление о копировании
+            const notification = document.createElement('div');
+            notification.textContent = 'IP сервера скопирован!';
+            notification.className = 'copy-notification';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 2000);
+        }
+
+        // Плавный скролл для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Плавный скролл к элементу
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Получение статуса сервера
+        function getServerStatus() {
+            // Замените на свой адрес сервера
+            const serverAddress = 'play.asetworld.aboba.su';
+            
+            // API для получения статуса Minecraft сервера (можно заменить на предпочитаемый вами API)
+            const apiUrl = `https://api.mcsrvstat.us/2/${serverAddress}`;
+            
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const statusElement = document.querySelector('.status');
+                    const statusTextElement = document.querySelector('.status-text');
+                    const playersCountElement = document.querySelector('.players-count');
+                    
+                    if (data.online) {
+                        // Сервер онлайн
+                        statusElement.classList.remove('offline');
+                        statusElement.classList.add('online');
+                        statusTextElement.textContent = 'Онлайн';
+                        
+                        // Обновляем количество игроков
+                        const currentPlayers = data.players?.online || 0;
+                        const maxPlayers = data.players?.max || 0;
+                        playersCountElement.textContent = `${currentPlayers}/${maxPlayers} игроков`;
+                    } else {
+                        // Сервер оффлайн
+                        statusElement.classList.remove('online');
+                        statusElement.classList.add('offline');
+                        statusTextElement.textContent = 'Оффлайн';
+                        playersCountElement.textContent = '0/0 игроков';
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении статуса сервера:', error);
+                    // Устанавливаем статус оффлайн в случае ошибки
+                    const statusElement = document.querySelector('.status');
+                    statusElement.classList.remove('online');
+                    statusElement.classList.add('offline');
+                    document.querySelector('.status-text').textContent = 'Статус недоступен';
+                    document.querySelector('.players-count').textContent = '';
+                });
+        }
+
+        // Получаем статус при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            getServerStatus();
+            
+            // Обновляем статус каждые 60 секунд
+            setInterval(getServerStatus, 60000);
+        });
+
+        // Скрипт для подсветки активного пункта меню при скроллинге
+        document.addEventListener('DOMContentLoaded', function() {
+            // Получаем все секции с id
+            const sections = document.querySelectorAll('section[id]');
+            // Получаем все ссылки меню
+            const menuLinks = document.querySelectorAll('header .menu a');
+            
+            // Функция для определения активной секции при скроллинге
+            function highlightActiveSection() {
+                // Получаем текущую позицию скролла
+                const scrollPosition = window.scrollY + 100; // Небольшой отступ для лучшего UX
+                
+                // Проверяем все секции
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    // Проверяем, находится ли текущая позиция скролла в пределах данной секции
+                    if(scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        // Удаляем класс active со всех ссылок
+                        menuLinks.forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        
+                        // Добавляем класс active к соответствующей ссылке
+                        const activeLink = document.querySelector(`header .menu a[href="#${sectionId}"]`);
+                        if(activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }
+            
+            // Запускаем функцию при скроллинге
+            window.addEventListener('scroll', highlightActiveSection);
+            
+            // Запускаем функцию при загрузке страницы
+            highlightActiveSection();
+        });
+
+        document.getElementById('downloadButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'https://drive.google.com/uc?export=download&id=16JEGk5XLSTf6CpvgVpIoxwAq-T7CkiDd';
+        });
+    </script>
+</body>
+</html> 
