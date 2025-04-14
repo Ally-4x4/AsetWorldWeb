@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsetWorld - Оформление заказа</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Стили для хедера как на главной странице */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        header .container {
+            position: relative;
+            height: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header nav {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #fff;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+        
+        header .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        header .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        header .menu li {
+            margin-left: 20px;
+        }
+        
+        header .menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        header .menu a.active {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+        
+        header .menu .donate-link {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+        
+        header .menu .donate-link:hover, 
+        header .menu .donate-link.active {
+            opacity: 0.8;
+        }
+        
+        /* Основной контент */
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 80px;
+            background-image: radial-gradient(circle at 50% 50%, rgba(30, 30, 30, 0.3), transparent 50%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2 {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+        
+        .highlight {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Секция оформления заказа */
+        .checkout-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .checkout-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .checkout-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .checkout-summary {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 230, 255, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            border-color: rgba(0, 230, 255, 0.5);
+        }
+        
+        .form-group select {
+            background: linear-gradient(to right, rgba(255, 0, 170, 0.2), rgba(0, 230, 255, 0.2));
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-right: 40px; /* Для пространства под кастомную стрелку */
+            background-image: url("data:image/svg+xml;utf8,<svg fill='%23FFFFFF' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+        
+        .form-group select option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        
+        .order-items {
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .order-total {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: right;
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-top: 20px;
+        }
+        
+        .confirm-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+            margin-top: 15px;
+        }
+        
+        .confirm-btn:hover {
+            background: linear-gradient(to right, #ff33bb, #00f7ff);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, #ff00aa, #00e6ff) 1;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(0, 230, 255, 0.2);
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            header .container {
+                height: auto;
+                padding: 10px 20px;
+            }
+            
+            header nav {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            header .logo {
+                margin-bottom: 15px;
+            }
+            
+            header .menu {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            header .menu li {
+                margin: 0 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .checkout-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="logo.png" alt="AsetWorld Logo">
+                    <span>AsetWorld</span>
+                </div>
+                <ul class="menu">
+                    <li><a href="index.html#about">О нас</a></li>
+                    <li><a href="index.html#launcher">Лаунчер</a></li>
+                    <li><a href="index.html#server">Сервер</a></li>
+                    <li><a href="index.html#contact">Контакты</a></li>
+                    <li><a href="donate.html" class="donate-link active">Донат</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-donate">
+        <div class="container">
+            <h1>Оформление <span class="highlight">заказа</span></h1>
+            <p>Заполните данные для оплаты и завершите покупку, чтобы получить свои товары на сервере AsetWorld!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="checkout-section">
+            <div class="checkout-container">
+                <div class="checkout-form">
+                    <h2>Данные для <span class="highlight">оплаты</span></h2>
+                    <div class="form-group">
+                        <label for="nickname">Никнейм в игре</label>
+                        <input type="text" id="nickname" placeholder="Введите ваш никнейм" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Введите ваш email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentMethod">Способ оплаты</label>
+                        <select id="paymentMethod" required>
+                            <option value="">Выберите способ оплаты</option>
+                            <option value="card">Банковская карта</option>
+                            <option value="sbp">СБП (Система Быстрых Платежей)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="promoCode">Промокод (если есть)</label>
+                        <input type="text" id="promoCode" placeholder="Введите промокод">
+                    </div>
+                </div>
+                <div class="checkout-summary">
+                    <h2>Состав <span class="highlight">заказа</span></h2>
+                    <div class="order-items" id="orderItems">
+                        <!-- Сюда будут добавляться товары из корзины -->
+                        <p style="text-align: center; color: rgba(255,255,255,0.5);">Товары не загружены</p>
+                    </div>
+                    <div class="order-total" id="orderTotal">Итого: 0 ₽</div>
+                </div>
+            </div>
+            <button class="confirm-btn" id="confirmOrder">Подтвердить и оплатить</button>
+            <a href="donate.html" class="back-btn">Вернуться в магазин</a>
+        </section>
+    </div>
+
+    <footer style="background: rgba(0, 0, 0, 0.7); padding: 30px 0; margin-top: 50px; border-top: 1px solid rgba(0, 230, 255, 0.3);">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
+                <div class="footer-logo" style="display: flex; align-items: center; font-family: 'Montserrat', sans-serif; font-weight: 700; color: #fff; font-size: 24px; text-transform: uppercase;">
+                    <img src="logo.png" alt="AsetWorld Logo" style="height: 40px; margin-right: 10px;">
+                    <span>AsetWorld</span>
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; font-family: 'Montserrat', sans-serif;">
+                    <a href="index.html#about" style="color: #fff; text-decoration: none; font-weight: 500;">О нас</a>
+                    <a href="index.html#launcher" style="color: #fff; text-decoration: none; font-weight: 500;">Лаунчер</a>
+                    <a href="index.html#server" style="color: #fff; text-decoration: none; font-weight: 500;">Сервер</a>
+                    <a href="index.html#contact" style="color: #fff; text-decoration: none; font-weight: 500;">Контакты</a>
+                    <a href="donate.html" style="background: linear-gradient(to right, #ff00aa, #00e6ff); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; font-weight: bold;">Донат</a>
+                </div>
+            </div>
+            <div style="text-align: center; color: rgba(255, 255, 255, 0.5); font-size: 0.9em;">
+                <p>&copy; 2023 AsetWorld. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Загрузка корзины из localStorage или другой логики
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const orderItems = document.getElementById('orderItems');
+        const orderTotal = document.getElementById('orderTotal');
+        const confirmOrderBtn = document.getElementById('confirmOrder');
+        const paymentMethodSelect = document.getElementById('paymentMethod');
+        
+        // Отображение товаров в заказе
+        function displayOrderItems() {
+            orderItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                orderItems.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.5);">Корзина пуста</p>';
+            } else {
+                // Группируем одинаковые товары
+                const groupedCart = {};
+                cart.forEach(item => {
+                    if (!groupedCart[item.name]) {
+                        groupedCart[item.name] = {
+                            name: item.name,
+                            price: item.price,
+                            count: 0,
+                            total: 0
+                        };
+                    }
+                    groupedCart[item.name].count++;
+                    groupedCart[item.name].total += item.price;
+                });
+                
+                // Отображаем сгруппированные товары
+                for (const itemName in groupedCart) {
+                    const item = groupedCart[itemName];
+                    const orderItemElement = document.createElement('div');
+                    orderItemElement.className = 'order-item';
+                    orderItemElement.innerHTML = `
+                        <span>${item.name} <small>(x${item.count})</small></span>
+                        <span>${item.total} ₽</span>
+                    `;
+                    orderItems.appendChild(orderItemElement);
+                }
+                
+                // Вычисляем и отображаем итоговую сумму
+                const total = cart.reduce((sum, item) => sum + item.price, 0);
+                orderTotal.textContent = `Итого: ${total} ₽`;
+            }
+        }
+        
+        // Подтверждение заказа
+        confirmOrderBtn.addEventListener('click', () => {
+            const nickname = document.getElementById('nickname').value;
+            const email = document.getElementById('email').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            
+            if (cart.length === 0) {
+                alert('Ваша корзина пуста. Добавьте товары перед оформлением заказа.');
+                return;
+            }
+            
+            if (!nickname || !email || !paymentMethod) {
+                alert('Пожалуйста, заполните все обязательные поля (Никнейм, Email, Способ оплаты).');
+                return;
+            }
+            
+            // Сохраняем данные заказа в localStorage
+            const orderData = {
+                nickname: nickname,
+                email: email,
+                paymentMethod: paymentMethod
+            };
+            localStorage.setItem('orderData', JSON.stringify(orderData));
+            
+            // Перенаправляем на страницу оплаты
+            window.location.href = 'payment.html';
+        });
+        
+        // Загружаем товары при загрузке страницы
+        document.addEventListener('DOMContentLoaded', displayOrderItems);
+    </script>
+</body>
+</html> 

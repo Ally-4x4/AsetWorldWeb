@@ -1,0 +1,837 @@
+/* Основные стили и переменные */
+:root {
+    --dark-bg: #1a1a1a;
+    --dark-bg-secondary: #252525;
+    --dark-bg-tertiary: #2d2d2d;
+    --accent-color: #7e57c2;
+    --accent-hover: #9575cd;
+    --text-color: #e6e6e6;
+    --text-color-secondary: #b0b0b0;
+    --border-color: #3a3a3a;
+    --container-width: 1200px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s ease;
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    position: relative;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.highlight {
+    color: var(--accent-color);
+}
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.btn.primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn.primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+.btn.secondary:hover {
+    background-color: rgba(126, 87, 194, 0.1);
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Шапка */
+header {
+    background-color: var(--dark-bg-secondary);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+header .container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 30px;
+    width: 100%;
+    position: relative;
+}
+
+nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 40px;
+}
+
+/* Обновленные стили для логотипа */
+.logo {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Обновленные стили для меню */
+.menu {
+    display: flex;
+    list-style: none;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+.menu li {
+    margin-left: 25px;
+}
+
+.menu a {
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: var(--transition);
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+/* Герой секция */
+.hero {
+    height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.9)), url('https://images.unsplash.com/photo-1569236856961-12afeb6ca96e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 600px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.hero h1 {
+    margin-bottom: 1.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color-secondary);
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Секции */
+section {
+    padding: 80px 0;
+}
+
+/* О нас */
+.about-content {
+    display: flex;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+}
+
+.about-features {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.feature {
+    background-color: var(--dark-bg-secondary);
+    padding: 20px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+/* Лаунчер */
+.launcher {
+    background-color: var(--dark-bg-secondary);
+}
+
+.launcher-content {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.launcher-info {
+    flex: 1;
+}
+
+.launcher-features {
+    margin: 20px 0;
+    list-style: none;
+}
+
+.launcher-features li {
+    margin-bottom: 10px;
+}
+
+.download-block {
+    margin-top: 30px;
+}
+
+.download-icon {
+    margin-right: 8px;
+}
+
+.version {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-color-secondary);
+    margin-top: 8px;
+}
+
+.launcher-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.launcher-preview {
+    width: 100%;
+    max-width: 500px;
+}
+
+.preview-window {
+    background-color: var(--dark-bg-tertiary);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.window-controls {
+    background-color: var(--dark-bg);
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.window-controls span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ff5f56;
+}
+
+.window-controls span:nth-child(2) {
+    background-color: #ffbd2e;
+}
+
+.window-controls span:nth-child(3) {
+    background-color: #27c93f;
+}
+
+.launcher-interface {
+    padding: 20px;
+    height: 300px;
+}
+
+.launcher-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.launcher-body {
+    display: flex;
+    height: calc(100% - 50px);
+}
+
+.launcher-news {
+    flex: 2;
+    background-color: var(--dark-bg);
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.launcher-login {
+    flex: 1;
+    background-color: var(--dark-bg);
+    border-radius: 4px;
+}
+
+/* Сервер */
+.server-content {
+    margin-top: 30px;
+}
+
+.server-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    background-color: var(--dark-bg-secondary);
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.server-address, .server-status {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.server-ip, .status {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    background-color: var(--dark-bg-tertiary);
+    padding: 10px 15px;
+    border-radius: 4px;
+    height: 50px;
+}
+
+.server-ip {
+    font-family: monospace;
+    font-size: 1.2rem;
+}
+
+.server-ip span {
+    flex: 1;
+}
+
+.copy-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.copy-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    background-color: var(--dark-bg-tertiary);
+    padding: 10px 15px;
+    border-radius: 4px;
+    height: 50px;
+}
+
+.status-indicator {
+    min-width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.status-text {
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.online .status-indicator {
+    background-color: #27c93f;
+    box-shadow: 0 0 10px #27c93f;
+}
+
+.offline .status-indicator {
+    background-color: #ff5f56;
+}
+
+.players-count {
+    margin-left: auto;
+    color: var(--text-color-secondary);
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.server-modes h3 {
+    margin-bottom: 20px;
+}
+
+.modes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.mode-card {
+    background-color: var(--dark-bg-secondary);
+    padding: 20px;
+    border-radius: 8px;
+    transition: var(--transition);
+    height: 100%;
+}
+
+.mode-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.mode-card h4 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+/* Контакты */
+.contact {
+    background-color: var(--dark-bg-secondary);
+}
+
+.contact-content {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.social-links {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    background-color: var(--dark-bg-tertiary);
+    padding: 15px 20px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.social-link img {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+}
+
+.discord {
+    border-left: 4px solid #7289da;
+}
+
+.telegram {
+    border-left: 4px solid #0088cc;
+}
+
+.contact-form {
+    flex: 1;
+    background-color: var(--dark-bg-tertiary);
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif;
+    transition: var(--transition);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Футер */
+footer {
+    background-color: var(--dark-bg);
+    padding: 40px 0 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color-secondary);
+    font-size: 0.9rem;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .about-content, .launcher-content, .contact-content {
+        flex-direction: column;
+    }
+    
+    .about-features {
+        margin-top: 30px;
+    }
+    
+    .launcher-image {
+        margin-top: 40px;
+    }
+    
+    .server-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .server-address, .server-status {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+    
+    nav {
+        flex-direction: column;
+        min-height: 70px;
+        padding-top: 50px;
+    }
+    
+    .logo {
+        position: absolute;
+        left: 50%;
+        top: 10px;
+        transform: translateX(-50%);
+    }
+    
+    .menu {
+        position: relative;
+        right: auto;
+        margin-top: 15px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .menu li {
+        margin: 0 10px;
+    }
+    
+    .hero {
+        height: auto;
+        padding: 80px 0;
+    }
+    
+    .buttons {
+        flex-direction: column;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+    
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.7rem;
+    }
+    
+    nav {
+        height: auto;
+        min-height: 90px;
+        padding-top: 40px;
+        padding-bottom: 10px;
+    }
+    
+    .logo {
+        margin: 0;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .menu {
+        margin-top: 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .menu li {
+        margin: 0 5px 5px;
+    }
+}
+
+/* Пульсирующий текст */
+.pulsing-text .word {
+    display: inline-block;
+    margin-right: 10px;
+    animation: pulse 2.5s infinite ease-in-out;
+}
+
+/* Удаляем разные задержки, чтобы все слова пульсировали одновременно */
+/*
+.pulsing-text .word:nth-child(1) { animation: pulse 2.5s infinite ease-in-out; animation-delay: 0s; }
+.pulsing-text .word:nth-child(2) { animation: pulse 2.5s infinite ease-in-out; animation-delay: 0.5s; }
+.pulsing-text .word:nth-child(3) { animation: pulse 2.5s infinite ease-in-out; animation-delay: 1.0s; }
+.pulsing-text .word:nth-child(4) { animation: pulse 2.5s infinite ease-in-out; animation-delay: 1.5s; }
+.pulsing-text .word:nth-child(5) { animation: pulse 2.5s infinite ease-in-out; animation-delay: 2.0s; }
+*/
+
+/* Анимация пульсации */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 0 rgba(126, 87, 194, 0);
+    }
+    50% {
+        transform: scale(1.1);
+        text-shadow: 0 0 10px rgba(126, 87, 194, 0.7);
+    }
+}
+
+/* Убираем старые стили для прыгающего текста */
+.jumping-text span {
+    display: inline-block;
+    position: relative;
+    animation: none;
+}
+
+.jumping-text .highlight span {
+    color: var(--accent-color);
+}
+
+.pulsing-text .highlight {
+    color: var(--accent-color);
+}
+
+/* Стили для отображения статуса формы */
+.form-status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.form-status.success {
+    display: block;
+    background-color: rgba(39, 201, 63, 0.1);
+    color: #27c93f;
+    border: 1px solid #27c93f;
+}
+
+.form-status.error {
+    display: block;
+    background-color: rgba(255, 95, 86, 0.1);
+    color: #ff5f56;
+    border: 1px solid #ff5f56;
+}
+
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Стили для блока контактов по email */
+.contact-description {
+    margin-bottom: 20px;
+    color: var(--text-color-secondary);
+}
+
+.email-container {
+    background-color: var(--dark-bg);
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.email-link {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.email-link:hover {
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.email-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    filter: invert(1);
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-buttons .btn span {
+    margin-right: 8px;
+} 

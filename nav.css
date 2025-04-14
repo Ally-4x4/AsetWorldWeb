@@ -1,0 +1,126 @@
+/* Стили для навигации */
+header {
+    background-color: #252525;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    width: 100%;
+    position: relative;
+}
+
+header nav {
+    position: relative;
+    height: 40px;
+    width: 100%;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+header .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+header .logo span {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #e6e6e6;
+}
+
+header .menu {
+    display: flex;
+    list-style: none;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+header .menu li {
+    margin-left: 25px;
+}
+
+header .menu a {
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    color: #e6e6e6;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+header .menu a:hover {
+    color: #7e57c2;
+}
+
+header .menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #7e57c2;
+    transition: all 0.3s ease;
+}
+
+header .menu a:hover::after {
+    width: 100%;
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 768px) {
+    header nav {
+        height: auto;
+        min-height: 70px;
+    }
+    
+    header .logo {
+        position: absolute;
+        left: 50%;
+        top: 10px;
+        transform: translateX(-50%);
+    }
+    
+    header .menu {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-top: 60px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    header .menu li {
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    header .menu {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    header .menu li {
+        margin: 0 5px 5px;
+    }
+} 

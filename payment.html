@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsetWorld - Подтверждение оплаты</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Стили для хедера как на главной странице */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        header .container {
+            position: relative;
+            height: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header nav {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #fff;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+        
+        header .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        header .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        header .menu li {
+            margin-left: 20px;
+        }
+        
+        header .menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        header .menu a.active {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+        
+        header .menu .donate-link {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+        
+        header .menu .donate-link:hover, 
+        header .menu .donate-link.active {
+            opacity: 0.8;
+        }
+        
+        /* Основной контент */
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 80px;
+            background-image: radial-gradient(circle at 50% 50%, rgba(30, 30, 30, 0.3), transparent 50%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+        
+        .highlight {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Секция оплаты */
+        .payment-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: rgba(0, 230, 255, 0.5);
+        }
+        
+        .payment-info {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 5px;
+            border: 1px solid rgba(0, 230, 255, 0.2);
+        }
+        
+        .payment-info p {
+            margin: 5px 0;
+        }
+        
+        .qr-code {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .confirm-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+            margin-top: 15px;
+        }
+        
+        .confirm-btn:hover {
+            background: linear-gradient(to right, #ff33bb, #00f7ff);
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            header .container {
+                height: auto;
+                padding: 10px 20px;
+            }
+            
+            header nav {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            header .logo {
+                margin-bottom: 15px;
+            }
+            
+            header .menu {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            header .menu li {
+                margin: 0 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="logo.png" alt="AsetWorld Logo">
+                    <span>AsetWorld</span>
+                </div>
+                <ul class="menu">
+                    <li><a href="index.html#about">О нас</a></li>
+                    <li><a href="index.html#launcher">Лаунчер</a></li>
+                    <li><a href="index.html#server">Сервер</a></li>
+                    <li><a href="index.html#contact">Контакты</a></li>
+                    <li><a href="donate.html" class="donate-link active">Донат</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-donate">
+        <div class="container">
+            <h1>Подтверждение <span class="highlight">оплаты</span></h1>
+            <p>Завершите оплату, чтобы получить свои товары на сервере AsetWorld!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="payment-section">
+            <h2>Финальный шаг <span class="highlight">оплаты</span></h2>
+            <div class="payment-info" id="paymentInfo">
+                <p><strong>Никнейм:</strong> <span id="displayNickname">Не указано</span></p>
+                <p><strong>Email:</strong> <span id="displayEmail">Не указано</span></p>
+                <p><strong>Способ оплаты:</strong> <span id="displayPaymentMethod">Не выбран</span></p>
+                <p><strong>Итого к оплате:</strong> <span id="displayTotal">0 ₽</span></p>
+            </div>
+            
+            <div id="cardPaymentForm" style="display: none;">
+                <h3>Оплата банковской <span class="highlight">картой</span></h3>
+                <div class="form-group">
+                    <label for="cardNumber">Номер карты</label>
+                    <input type="text" id="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="cardExpiry">Срок действия</label>
+                        <input type="text" id="cardExpiry" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="cardCVC">CVC/CVV</label>
+                        <input type="text" id="cardCVC" placeholder="XXX" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cardHolder">Имя держателя карты</label>
+                    <input type="text" id="cardHolder" placeholder="Введите имя как на карте" required>
+                </div>
+                <p style="font-size: 0.8em; color: rgba(255, 255, 255, 0.7); margin-top: 10px;">Ваши данные защищены. Мы не храним информацию о картах.</p>
+            </div>
+            
+            <div id="sbpPaymentForm" style="display: none;">
+                <h3>Оплата через <span class="highlight">СБП</span></h3>
+                <div class="qr-code">
+                    <img src="Иконки для моего магазина/qr-sbp-payment.png" alt="QR-код для оплаты через СБП">
+                </div>
+                <p style="font-size: 0.9em; color: rgba(255, 255, 255, 0.8); margin-bottom: 10px; text-align: center;">Отсканируйте QR-код с помощью банковского приложения для оплаты.</p>
+                <p style="font-size: 0.8em; color: rgba(255, 255, 255, 0.7); text-align: center;">После оплаты товары будут начислены автоматически.</p>
+            </div>
+            
+            <button class="confirm-btn" id="finalConfirm">Завершить оплату</button>
+        </section>
+    </div>
+
+    <footer style="background: rgba(0, 0, 0, 0.7); padding: 30px 0; margin-top: 50px; border-top: 1px solid rgba(0, 230, 255, 0.3);">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
+                <div class="footer-logo" style="display: flex; align-items: center; font-family: 'Montserrat', sans-serif; font-weight: 700; color: #fff; font-size: 24px; text-transform: uppercase;">
+                    <img src="logo.png" alt="AsetWorld Logo" style="height: 40px; margin-right: 10px;">
+                    <span>AsetWorld</span>
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; font-family: 'Montserrat', sans-serif;">
+                    <a href="index.html#about" style="color: #fff; text-decoration: none; font-weight: 500;">О нас</a>
+                    <a href="index.html#launcher" style="color: #fff; text-decoration: none; font-weight: 500;">Лаунчер</a>
+                    <a href="index.html#server" style="color: #fff; text-decoration: none; font-weight: 500;">Сервер</a>
+                    <a href="index.html#contact" style="color: #fff; text-decoration: none; font-weight: 500;">Контакты</a>
+                    <a href="donate.html" style="background: linear-gradient(to right, #ff00aa, #00e6ff); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; font-weight: bold;">Донат</a>
+                </div>
+            </div>
+            <div style="text-align: center; color: rgba(255, 255, 255, 0.5); font-size: 0.9em;">
+                <p>&copy; 2023 AsetWorld. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Получаем данные из localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let orderData = JSON.parse(localStorage.getItem('orderData')) || {};
+        
+        const displayNickname = document.getElementById('displayNickname');
+        const displayEmail = document.getElementById('displayEmail');
+        const displayPaymentMethod = document.getElementById('displayPaymentMethod');
+        const displayTotal = document.getElementById('displayTotal');
+        const cardPaymentForm = document.getElementById('cardPaymentForm');
+        const sbpPaymentForm = document.getElementById('sbpPaymentForm');
+        const finalConfirmBtn = document.getElementById('finalConfirm');
+        
+        // Отображаем данные заказа
+        function displayOrderData() {
+            displayNickname.textContent = orderData.nickname || 'Не указано';
+            displayEmail.textContent = orderData.email || 'Не указано';
+            displayPaymentMethod.textContent = orderData.paymentMethod === 'card' ? 'Банковская карта' : 'СБП';
+            
+            // Вычисляем общую сумму
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            displayTotal.textContent = `${total} ₽`;
+            
+            // Показываем нужную форму оплаты
+            if (orderData.paymentMethod === 'card') {
+                cardPaymentForm.style.display = 'block';
+                sbpPaymentForm.style.display = 'none';
+            } else if (orderData.paymentMethod === 'sbp') {
+                cardPaymentForm.style.display = 'none';
+                sbpPaymentForm.style.display = 'block';
+            }
+        }
+        
+        // Завершение оплаты
+        finalConfirmBtn.addEventListener('click', () => {
+            if (orderData.paymentMethod === 'card') {
+                const cardNumber = document.getElementById('cardNumber').value;
+                const cardExpiry = document.getElementById('cardExpiry').value;
+                const cardCVC = document.getElementById('cardCVC').value;
+                const cardHolder = document.getElementById('cardHolder').value;
+                
+                if (!cardNumber || !cardExpiry || !cardCVC || !cardHolder) {
+                    alert('Пожалуйста, заполните все данные карты.');
+                    return;
+                }
+            }
+            
+            // Здесь должна быть реальная интеграция с платежной системой
+            alert(`Спасибо за оплату, ${orderData.nickname || 'игрок'}! \n\nВаши товары будут начислены на аккаунт в ближайшее время. \n\nВы будете перенаправлены на главную страницу.`);
+            
+            // Очищаем корзину и данные заказа
+            localStorage.removeItem('cart');
+            localStorage.removeItem('orderData');
+            
+            // Перенаправляем на главную страницу
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 3000);
+        });
+        
+        // Отображаем данные при загрузке страницы
+        document.addEventListener('DOMContentLoaded', displayOrderData);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsetWorld - Донат-магазин</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Стили для хедера как на главной странице */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        header .container {
+            position: relative;
+            height: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header nav {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #fff;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+        
+        header .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        header .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        header .menu li {
+            margin-left: 20px;
+        }
+        
+        header .menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        header .menu a.active {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+        
+        header .menu .donate-link {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+        
+        header .menu .donate-link:hover, 
+        header .menu .donate-link.active {
+            opacity: 0.8;
+        }
+        
+        /* Основной контент */
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 80px;
+            background-image: radial-gradient(circle at 50% 50%, rgba(30, 30, 30, 0.3), transparent 50%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2 {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            margin-bottom: 25px;
+            font-size: 2em;
+        }
+        
+        .highlight {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Секция заголовка */
+        .hero-donate {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('minecraft-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-donate::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(transparent, transparent 5px, rgba(255, 204, 0, 0.03) 5px, rgba(255, 204, 0, 0.03) 6px);
+        }
+        
+        .hero-donate h1 {
+            animation: fadeInDown 1s ease-out;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-donate p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1.5s ease-out;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Категории */
+        .category {
+            margin: 50px 0;
+        }
+        
+        .category h2 {
+            border-left: 5px solid transparent;
+            border-image: linear-gradient(to bottom, #ff00aa, #00e6ff) 1;
+            padding-left: 15px;
+            animation: fadeInLeft 1s ease-out;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 204, 0, 0.1), transparent);
+            z-index: -1;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255, 0, 170, 0.3);
+            border-color: rgba(0, 230, 255, 0.4);
+        }
+        
+        .product-card h3 {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            text-transform: uppercase;
+        }
+        
+        .product-card p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            font-size: 0.9em;
+            min-height: 60px;
+        }
+        
+        .price {
+            font-size: 1.5em;
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .buy-btn {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, #ff00aa, #00e6ff) 1;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        
+        .buy-btn:hover {
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 230, 255, 0.6);
+        }
+        
+        /* Корзина */
+        .cart-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 230, 255, 0.5);
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 0, 170, 0.7);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff0066;
+            color: white;
+            font-size: 0.8em;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Модальное окно корзины */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .cart-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid rgba(0, 230, 255, 0.4);
+        }
+        
+        .cart-content h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        .cart-items {
+            margin: 20px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cart-item-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .cart-item-btn:hover {
+            background: rgba(0, 230, 255, 0.4);
+        }
+        
+        .cart-total {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: right;
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-top: 20px;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        
+        .checkout-btn:hover {
+            background: linear-gradient(to right, #ff33bb, #00f7ff);
+        }
+        
+        .close-cart {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            header .container {
+                height: auto;
+                padding: 10px 20px;
+            }
+            
+            header nav {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            header .logo {
+                margin-bottom: 15px;
+            }
+            
+            header .menu {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            header .menu li {
+                margin: 0 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Стили для ползунка */
+        input[type=range] {
+            position: relative;
+            top: 2px; /* Сдвигаем ползунок вверх для выравнивания с линией */
+            outline: none; /* Убираем возможные контуры */
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            appearance: none !important; /* Используем стандартное свойство */
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 230, 255, 0.6);
+            position: relative;
+            top: -6px; /* Дополнительная корректировка для WebKit браузеров */
+            border: none; /* Убираем возможные границы */
+        }
+        
+        input[type=range]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 5px rgba(0, 230, 255, 0.6);
+            margin-top: -6px; /* Корректировка для Firefox */
+        }
+        
+        input[type=range]::-ms-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #ff00aa, #00e6ff);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 5px rgba(0, 230, 255, 0.6);
+            margin-top: -6px; /* Корректировка для Edge */
+        }
+        
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        input[type=range]::-ms-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+        }
+        
+        input[type=range]::-ms-fill-lower {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        input[type=range]::-ms-fill-upper {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        /* Стили для анимации текста */
+        #typingAnimation {
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid transparent;
+            border-image: linear-gradient(to bottom, #ff00aa, #00e6ff) 1;
+            animation: blinkCursor 0.75s step-end infinite; /* Анимация мигания курсора */
+        }
+        
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-image: linear-gradient(to bottom, #ff00aa, #00e6ff) 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+        <div class="logo">
+                    <img src="logo.png" alt="AsetWorld Logo">
+                    <span>AsetWorld</span>
+        </div>
+                <ul class="menu">
+                    <li><a href="index.html#about">О нас</a></li>
+                    <li><a href="index.html#launcher">Лаунчер</a></li>
+                    <li><a href="index.html#server">Сервер</a></li>
+                    <li><a href="index.html#contact">Контакты</a></li>
+                    <li><a href="donate.html" class="donate-link active">Донат</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <section class="hero-donate">
+        <div class="container">
+            <h1 id="typingAnimation">Донат-магазин <span class="highlight">AsetWorld</span></h1>
+            <p>Поддержите наш сервер и получите уникальные привилегии, валюту и предметы для более увлекательной игры!</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="privileges" class="category">
+            <h2>Привилегии</h2>
+            <div class="products">
+                <div class="product-card">
+                    <h3>VIP</h3>
+                    <p>Базовые привилегии, доступ к VIP-локациям, уникальный префикс в чате и 5.000 коинов в подарок.</p>
+                    <div class="price">199 ₽</div>
+                    <button class="buy-btn" data-item="VIP" data-price="199">Добавить в корзину</button>
+                    </div>
+                <div class="product-card">
+                    <h3>Premium</h3>
+                    <p>Расширенные команды, доступ к эксклюзивным китам, 10.000 коинов и особый префикс.</p>
+                    <div class="price">349 ₽</div>
+                    <button class="buy-btn" data-item="Premium" data-price="349">Добавить в корзину</button>
+                </div>
+                <div class="product-card">
+                    <h3>Deluxe</h3>
+                    <p>Возможность летать, дополнительные слоты для домов, 20.000 коинов и яркий префикс.</p>
+                    <div class="price">549 ₽</div>
+                    <button class="buy-btn" data-item="Deluxe" data-price="549">Добавить в корзину</button>
+            </div>
+                <div class="product-card">
+                    <h3>Ultimate</h3>
+                    <p>Доступ ко всем командам, уникальные косметические эффекты, 30.000 коинов и статусный префикс.</p>
+                    <div class="price">799 ₽</div>
+                    <button class="buy-btn" data-item="Ultimate" data-price="799">Добавить в корзину</button>
+                    </div>
+                <div class="product-card">
+                    <h3>Legend</h3>
+                    <p>Полный доступ ко всем возможностям сервера, персональная поддержка, 50.000 коинов и легендарный статус.</p>
+                    <div class="price">1299 ₽</div>
+                    <button class="buy-btn" data-item="Legend" data-price="1299">Добавить в корзину</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="currency" class="category">
+            <h2>Донат валюта - <span class="highlight">Коины</span></h2>
+            <div class="products">
+                <div class="product-card" style="max-width: 500px; margin: 0 auto;">
+                    <h3>Покупка Коинов</h3>
+                    <p>Выберите нужное количество коинов для покупок в магазине сервера. 1 коин = 1 ₽</p>
+                    <div style="margin-bottom: 20px;">
+                        <label for="coinSlider" style="display: block; margin-bottom: 10px; font-weight: bold;">Количество коинов: <span id="coinAmount">100</span></label>
+                        <input type="range" id="coinSlider" min="10" max="5000" value="100" style="width: 100%; cursor: pointer; appearance: none; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; outline: none;">
+                    </div>
+                    <div class="price" id="coinPrice">100 ₽</div>
+                    <button class="buy-btn" data-item="Коины" data-price="100">Добавить в корзину</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="keys" class="category">
+            <h2>Ключи от <span class="highlight">донат-кейсов</span></h2>
+            <div class="products">
+                <div class="product-card">
+                    <h3>Донат ключ</h3>
+                    <p>Ключ для открытия стандартного донат-кейса с ценными призами.</p>
+                    <div class="price">50 ₽</div>
+                    <button class="buy-btn" data-item="Донат ключ" data-price="50">Добавить в корзину</button>
+                </div>
+                <div class="product-card">
+                    <h3>Ключ от кейса с таликами</h3>
+                    <p>Шанс получить редкие талисманы с мощными эффектами.</p>
+                    <div class="price">129 ₽</div>
+                    <button class="buy-btn" data-item="Ключ от кейса с таликами" data-price="129">Добавить в корзину</button>
+                </div>
+                <div class="product-card">
+                    <h3>Ключ от кейса с монетами</h3>
+                    <p>Гарантированный выигрыш игровой валюты + шанс на бонус.</p>
+                    <div class="price">50 ₽</div>
+                    <button class="buy-btn" data-item="Ключ от кейса с монетами" data-price="50">Добавить в корзину</button>
+                </div>
+                <div class="product-card">
+                    <h3>Ключ от кейса с Коинами</h3>
+                    <p>Открой кейс и получи донат-валюту для покупок в магазине.</p>
+                    <div class="price">79 ₽</div>
+                    <button class="buy-btn" data-item="Ключ от кейса с Коинами" data-price="79">Добавить в корзину</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Иконка корзины -->
+    <div class="cart-icon" id="cartIcon">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+        </div>
+
+    <!-- Модальное окно корзины -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <button class="close-cart" id="closeCart">×</button>
+            <h2>Ваша <span class="highlight">корзина</span></h2>
+            <div class="cart-items" id="cartItems">
+                <!-- Сюда будут добавляться товары -->
+                <p style="text-align: center; color: rgba(255,255,255,0.5);">Корзина пуста</p>
+            </div>
+            <div class="cart-total" id="cartTotal">Итого: 0 ₽</div>
+            <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <footer style="background: rgba(0, 0, 0, 0.7); padding: 30px 0; margin-top: 50px; border-top: 1px solid rgba(0, 230, 255, 0.3);">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 20px;">
+                <div class="footer-logo" style="display: flex; align-items: center; font-family: 'Montserrat', sans-serif; font-weight: 700; color: #fff; font-size: 24px; text-transform: uppercase;">
+                    <img src="logo.png" alt="AsetWorld Logo" style="height: 40px; margin-right: 10px;">
+                    <span>AsetWorld</span>
+                </div>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; font-family: 'Montserrat', sans-serif;">
+                    <a href="index.html#about" style="color: #fff; text-decoration: none; font-weight: 500;">О нас</a>
+                    <a href="index.html#launcher" style="color: #fff; text-decoration: none; font-weight: 500;">Лаунчер</a>
+                    <a href="index.html#server" style="color: #fff; text-decoration: none; font-weight: 500;">Сервер</a>
+                    <a href="index.html#contact" style="color: #fff; text-decoration: none; font-weight: 500;">Контакты</a>
+                    <a href="donate.html" style="background: linear-gradient(to right, #ff00aa, #00e6ff); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; font-weight: bold;">Донат</a>
+                </div>
+            </div>
+            <div style="text-align: center; color: rgba(255, 255, 255, 0.5); font-size: 0.9em;">
+                <p>&copy; 2023 AsetWorld. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавный скролл для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Корзина
+        let cart = [];
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCount = document.getElementById('cartCount');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        
+        // Открытие корзины
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'block';
+        });
+        
+        // Закрытие корзины
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+        
+        // Закрытие корзины при клике вне окна
+        window.addEventListener('click', (event) => {
+            if (event.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+        
+        // Добавление товара в корзину
+        document.querySelectorAll('.buy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const itemName = this.getAttribute('data-item');
+                let itemPrice = parseInt(this.getAttribute('data-price'));
+                
+                // Специальная обработка для коинов
+                if (itemName === 'Коины') {
+                    const coinAmount = parseInt(document.getElementById('coinSlider').value);
+                    itemPrice = coinAmount; // Цена равна количеству коинов (1 коин = 1 рубль)
+                    this.setAttribute('data-price', itemPrice);
+                }
+                
+                // Добавляем товар в массив корзины
+                cart.push({ name: itemName === 'Коины' ? `${itemName} (${document.getElementById('coinSlider').value})` : itemName, price: itemPrice });
+                
+                // Обновляем отображение корзины
+                updateCartDisplay();
+                
+                // Анимация добавления в корзину
+                this.textContent = 'Добавлено!';
+                this.style.background = 'linear-gradient(to right, #ff00aa, #00e6ff)';
+                this.style.color = '#000';
+                setTimeout(() => {
+                    this.textContent = 'Добавить в корзину';
+                    this.style.background = 'transparent';
+                    this.style.color = '#fff';
+                }, 1000);
+            });
+        });
+        
+        // Обработчик ползунка для коинов
+        const coinSlider = document.getElementById('coinSlider');
+        const coinAmount = document.getElementById('coinAmount');
+        const coinPrice = document.getElementById('coinPrice');
+        const coinBuyButton = document.querySelector('#currency .buy-btn');
+        
+        coinSlider.addEventListener('input', function() {
+            const value = this.value;
+            coinAmount.textContent = value;
+            coinPrice.textContent = `${value} ₽`;
+            coinBuyButton.setAttribute('data-price', value);
+        });
+        
+        // Обновление отображения корзины
+        function updateCartDisplay() {
+            // Обновляем счетчик товаров
+            cartCount.textContent = cart.length;
+            
+            // Очищаем текущее содержимое корзины
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.5);">Корзина пуста</p>';
+            } else {
+                // Группируем одинаковые товары
+                const groupedCart = {};
+                cart.forEach((item, index) => {
+                    if (!groupedCart[item.name]) {
+                        groupedCart[item.name] = {
+                            name: item.name,
+                            price: item.price,
+                            count: 0,
+                            total: 0,
+                            indices: []
+                        };
+                    }
+                    groupedCart[item.name].count++;
+                    groupedCart[item.name].total += item.price;
+                    groupedCart[item.name].indices.push(index);
+                });
+                
+                // Отображаем сгруппированные товары
+                for (const itemName in groupedCart) {
+                    const item = groupedCart[itemName];
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <span>${item.name}</span>
+                        <div class="cart-item-controls">
+                            <button class="cart-item-btn decrease-btn" data-name="${item.name}">-</button>
+                            <span>x${item.count}</span>
+                            <button class="cart-item-btn increase-btn" data-name="${item.name}">+</button>
+                        </div>
+                        <span>${item.total} ₽</span>
+                    `;
+                    cartItems.appendChild(cartItemElement);
+                }
+                
+                // Добавляем обработчики для кнопок увеличения/уменьшения
+                document.querySelectorAll('.decrease-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemName = this.getAttribute('data-name');
+                        // Удаляем один элемент из корзины
+                        for (let i = 0; i < cart.length; i++) {
+                            if (cart[i].name === itemName) {
+                                cart.splice(i, 1);
+                                break;
+                            }
+                        }
+                        updateCartDisplay();
+                    });
+                });
+                
+                document.querySelectorAll('.increase-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const itemName = this.getAttribute('data-name');
+                        // Добавляем еще один такой же элемент в корзину
+                        for (let i = 0; i < cart.length; i++) {
+                            if (cart[i].name === itemName) {
+                                cart.push({...cart[i]});
+                                break;
+                            }
+                        }
+                        updateCartDisplay();
+                    });
+                });
+            }
+            
+            // Вычисляем и отображаем итоговую сумму
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartTotal.textContent = `Итого: ${total} ₽`;
+        }
+        
+        // Оформление заказа
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length > 0) {
+                // Сохраняем корзину в localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                // Перенаправляем на страницу оформления заказа
+                window.location.href = 'checkout.html';
+            } else {
+                alert('Ваша корзина пуста. Добавьте товары перед оформлением заказа.');
+            }
+        });
+        
+        // Анимация набора и удаления текста
+        function typeWriterEffect() {
+            const element = document.getElementById('typingAnimation');
+            const text = "Донат-магазин AsetWorld"; // Текст без HTML тега span
+            let i = 0;
+            let isTyping = true;
+            
+            function typeAndDelete() {
+                if (isTyping) {
+                    // Набор текста
+                    if (i < text.length) {
+                        // Формируем текст с учетом того, что часть после "Донат-магазин " должна быть выделена
+                        if (i < "Донат-магазин ".length) {
+                            element.innerHTML = text.substring(0, i + 1);
+                        } else {
+                            element.innerHTML = text.substring(0, "Донат-магазин ".length) + '<span class="highlight">' + text.substring("Донат-магазин ".length, i + 1) + '</span>';
+                        }
+                        i++;
+                        setTimeout(typeAndDelete, 100); // Скорость набора текста
+                    } else {
+                        isTyping = false;
+                        setTimeout(typeAndDelete, 2000); // Задержка перед удалением
+                    }
+                } else {
+                    // Удаление текста
+                    if (i > 0) {
+                        if (i < "Донат-магазин ".length) {
+                            element.innerHTML = text.substring(0, i);
+                        } else {
+                            element.innerHTML = text.substring(0, "Донат-магазин ".length) + '<span class="highlight">' + text.substring("Донат-магазин ".length, i) + '</span>';
+                        }
+                        i--;
+                        setTimeout(typeAndDelete, 50); // Скорость удаления текста
+                    } else {
+                        isTyping = true;
+                        setTimeout(typeAndDelete, 500); // Задержка перед новым набором
+                    }
+                }
+            }
+            
+            typeAndDelete();
+        }
+        
+        // Запускаем анимацию при загрузке страницы
+        document.addEventListener('DOMContentLoaded', typeWriterEffect);
+    </script>
+</body>
+</html> 
